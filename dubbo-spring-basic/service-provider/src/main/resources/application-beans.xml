@@ -4,10 +4,5 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
   http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 
-    <import resource="application-beans.xml"/>
-    <import resource="application-common.xml"/>
-    <import resource="application-aop.xml"/>
-    <import resource="application-db.xml"/>
-    <import resource="application-dubbo.xml"/>
 
 </beans>

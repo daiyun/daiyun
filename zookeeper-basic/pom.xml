@@ -5,14 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>daiyun</groupId>
-    <artifactId>dubbo-spring-basic</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>zookeeper-basic</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>service-api</module>
-        <module>service-provider</module>
-        <module>service-consumer</module>
-    </modules>
 
 
 </project>

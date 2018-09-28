@@ -12,10 +12,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- dependency versions -->
-        <spring.version>4.0.2.RELEASE</spring.version>
-        <servlet.api.version>2.4</servlet.api.version>
-        <shiro.version>1.2.2</shiro.version>
-        <jedis.version>2.6.0</jedis.version>
+        <spring.version>4.3.10.RELEASE</spring.version>
+        <servlet.version>3.1.0</servlet.version>
     </properties>
 
     <dependencies>
@@ -68,6 +66,14 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <!-- servlet依赖的jar包 -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${servlet.version}</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
