@@ -16,6 +16,11 @@ public class BinSearchTree {
 
     BinTreeTraversing.infix(tree);
 
+    System.out.println();
+    tree = remove(6, tree);
+
+    BinTreeTraversing.infix(tree);
+
   }
 
   public static BinTree insert(Comparable o, BinTree tree) {
@@ -52,32 +57,32 @@ public class BinSearchTree {
 
   }
 
-  public static boolean remove(Comparable o, BinTree tree) {
+  public static BinTree remove(Comparable o, BinTree tree) {
 
     if (tree == null || tree.value == null) {
-      return false;
+      return null;
     }
 
     int compareRes = o.compareTo(tree.value);
 
     if (compareRes < 0) {
-      remove(o, tree.left);
+      tree.left = remove(o, tree.left);
     } else if (compareRes > 0) {
-      remove(o, tree.right);
+      tree.right = remove(o, tree.right);
     } else {
 
       if (tree.left != null && tree.right != null) {
 
-        tree.value = findMix(tree.right).value;
+        tree.value = findMin(tree.right).value;
 
-        remove(tree.value, tree.right);
+        tree.right = remove(tree.value, tree.right);
 
       } else {
         tree = (tree.left != null) ? tree.left : tree.right;
       }
     }
 
-    return false;
+    return tree;
   }
 
   public static BinTree findMix(BinTree tree) {
@@ -94,6 +99,18 @@ public class BinSearchTree {
 
   }
 
+  private static BinTree findMin(BinTree root) {
+
+    if (root == null || root.value == null) {
+      return null;
+    }
+
+    while (root.left != null) {
+      root = root.left;
+    }
+
+    return root;
+  }
   public static BinTree finxMax(BinTree tree) {
     while (tree.right != null) {
       tree = tree.right;

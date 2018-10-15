@@ -4,6 +4,20 @@ public class AVLTree {
 
   public static void main(String[] args) {
 
+    BinTree<Integer> treeRoot = new BinTree<>(1);
+    treeRoot = insert(1, treeRoot);
+    treeRoot = insert(4, treeRoot);
+    treeRoot = insert(2, treeRoot);
+    treeRoot = insert(9, treeRoot);
+    treeRoot = insert(6, treeRoot);
+    treeRoot = insert(7, treeRoot);
+    BinTreeTraversing.infix(treeRoot);
+
+    System.out.println();
+    treeRoot = remove(6, treeRoot);
+
+    BinTreeTraversing.infix(treeRoot);
+
   }
 
   public static BinTree insert(Comparable o, BinTree tree) {
@@ -22,11 +36,61 @@ public class AVLTree {
     } else if (compareRes < 0) {
 
       tree.left = insert(o, tree.left);
-    } else {
-
     }
 
     return balance(tree);
+  }
+
+  public static BinTree remove(Comparable o, BinTree tree) {
+    if (tree == null || tree.value == null) {
+      return null;
+    }
+
+    int compareRes = o.compareTo(tree.value);
+
+    if (compareRes > 0) {
+      tree.right = remove(o, tree.right);
+    } else if (compareRes < 0) {
+      tree.left = remove(o, tree.left);
+    } else {
+      if (tree.left != null && tree.right != null) {
+
+        tree.value = findMix(tree.right).value;
+
+        tree.right = remove(tree.value, tree.right);
+      } else {
+        tree = (tree.left != null) ? tree.left : tree.right;
+      }
+    }
+
+    return balance(tree);
+  }
+
+  private static BinTree findMin(BinTree root) {
+
+    if (root == null || root.value == null) {
+      return null;
+    }
+
+    while (root.left != null) {
+      root = root.left;
+    }
+
+    return root;
+  }
+
+  public static BinTree findMix(BinTree tree) {
+
+    if (tree == null || tree.value == null) {
+      return null;
+    }
+
+    if (tree.left == null) {
+      return tree;
+    }
+
+    return findMix(tree.left);
+
   }
 
   private static BinTree balance(BinTree tree) {
