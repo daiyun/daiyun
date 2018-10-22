@@ -4,18 +4,11 @@ public class LeetcodeTest {
 
   public static void main(String[] args) {
 
-    Question6 question6 =  new Question6();
 
-    Question6.Solution solution = question6.new Solution();
+    Question10 question = new Question10();
 
-    //PAHNAPLSIIGYIR
+    Question10.Solution soluation = question.new Solution();
 
-    System.out.println(solution.convert("PAYPALISHIRING",3));
-    /**
-     * P A H N
-     * APLSIIG
-     * Y I R
-     *
-     */
+    System.out.println(soluation.isMatch("ab",".*.."));
   }
 }

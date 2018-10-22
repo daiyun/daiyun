@@ -128,7 +128,7 @@ public class AVLTree {
 
   private static BinTree doubleRoutateWithLeftChild(BinTree tree) {
 
-    tree.right = rotateWithRightChild(tree.right);
+    tree.left = rotateWithRightChild(tree.left);
 
     return rotateWithLeftChild(tree);
   }
