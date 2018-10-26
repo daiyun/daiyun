@@ -2,6 +2,56 @@ package daiyun.leetcode;
 
 public class Question10 {
 
+  class SolutionB {
+    public boolean isMatch(String s, String p) {
+
+      int sLength = s.length();
+      int pLength = p.length();
+      boolean[][] sp = new boolean[sLength + 1][pLength + 1];
+
+      sp[0][0] = true;
+
+      // 初始状态
+      // 当字符不为空 匹配模式为空时 返回不匹配
+      for (int i = 1; i <= sLength; i++) {
+        sp[i][0] = false;
+      }
+
+      // 初始状态
+      // 只能是 a*b*c*类似的才能配置 依赖上一个模式匹配情况
+      // 第一个字符不可能为 *
+      for (int i = 1; i <= pLength; i++) {
+        if (p.charAt(i - 1) == '*' && sp[0][i - 2]) {
+          sp[0][i] = true;
+        }else{
+          sp[0][i] = false;
+        }
+      }
+
+      for (int i = 1; i <= sLength; i++) {
+        for (int j = 1; j <= pLength; j++) {
+          if (s.charAt(i - 1) == p.charAt(j - 1)) {
+            sp[i][j] = sp[i - 1][j - 1];
+          } else if (p.charAt(j - 1) == '.') {
+            sp[i][j] = sp[i - 1][j - 1];
+          } else if (p.charAt(j - 1) == '*') {
+            if (p.charAt(j - 2) != s.charAt(i - 1) && p.charAt(j - 2) != '.') {
+              sp[i][j] = sp[i][j - 2];
+            } else {
+              sp[i][j] = (sp[i][j - 1] || sp[i][j - 2] || sp[i - 1][j]);
+            }
+          } else {
+            sp[i][j] = false;
+          }
+
+        }
+      }
+
+
+      return sp[sLength][pLength];
+    }
+  }
+
   class Solution {
     public boolean isMatch(String s, String p) {
       //"aab"
@@ -89,16 +139,16 @@ public class Question10 {
           }
         } else {
           if (preRegex != null) {
-            if(preRegex.length == 2){
+            if (preRegex.length == 2) {
 
-              if (preRegex[0] == p.charAt(k)){
+              if (preRegex[0] == p.charAt(k)) {
                 k++;
-              } else if(re == p.charAt(k)){
+              } else if (re == p.charAt(k)) {
                 k++;
               } else {
                 return false;
               }
-            }else{
+            } else {
               return false;
             }
           } else {
