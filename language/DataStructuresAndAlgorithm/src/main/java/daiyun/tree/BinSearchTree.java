@@ -17,11 +17,8 @@ public class BinSearchTree {
     BinTreeTraversing.infix(tree);
 
     System.out.println();
-<<<<<<< HEAD
     tree =remove(6, tree);
-=======
     tree = remove(6, tree);
->>>>>>> 3a9501b551953ab336e1e5922d1fea862d898496
 
     BinTreeTraversing.infix(tree);
 
@@ -70,11 +67,7 @@ public class BinSearchTree {
     int compareRes = o.compareTo(tree.value);
 
     if (compareRes < 0) {
-<<<<<<< HEAD
      tree.left =  remove(o, tree.left);
-=======
-      tree.left = remove(o, tree.left);
->>>>>>> 3a9501b551953ab336e1e5922d1fea862d898496
     } else if (compareRes > 0) {
       tree.right = remove(o, tree.right);
     } else {

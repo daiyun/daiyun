@@ -11,13 +11,7 @@ public class Question10 {
 
   class Solution {
     public boolean isMatch(String s, String p) {
-      //"aab"
-// "c*a*b"
-      // "aaa"
-// "ab*a*c*a"
 
-//      "ab"
-//      ".*.."
       int k = 0;
       int length = s.length();
       int pLength = p.length();
@@ -55,7 +49,7 @@ public class Question10 {
 
           if (re <= 0) {
             if (preRegex.length == 2) {
-              if (preRegex[0] == regex[0] || preRegex[0] == '.') {
+              if (preRegex[0].equals(regex[0]) || preRegex[0] == '.') {
                 re = -1;
               }
             }
@@ -119,7 +113,7 @@ public class Question10 {
 
     public int metch(Character s, Character regex[]) {
       if (regex.length == 1) {
-        if (s == regex[0]) {
+        if (s.equals(regex[0])) {
           return 1;
         } else if (regex[0] == '.') {
           return 1;
@@ -127,7 +121,7 @@ public class Question10 {
           return 0;
         }
       } else {
-        if (s == regex[0]) {
+        if (s.equals(regex[0])) {
           return s;
         } else if (regex[0] == '.') {
           return s;
