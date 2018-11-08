@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.szl.dao.DataDailyMapper">
+
+    <resultMap id="BaseResultMap" type="daiyun.pojo.Name">
+        <result column="id" property="id" jdbcType="INT"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap type="java.lang.Integer" id="Integer"></resultMap>
+
+    <select id="selectByName" resultMap="Integer">
+        SELECT count(*) from name
+    </select>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        SELECT id,name FROM name
+    </select>
+
+    <insert id="insert" parameterType="daiyun.pojo.Name">
+        insert into
+        name(id,name)
+        values(
+        #{id,jdbcType=INT},
+        #{name,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <delete id="deleteByName">
+        delete from name where name = #{name}
+    </delete>
+
+    <delete id="deleteById">
+        delete from name where id = #{id}
+    </delete>
+
+</mapper>
