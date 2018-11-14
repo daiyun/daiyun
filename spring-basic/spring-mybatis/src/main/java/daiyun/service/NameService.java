@@ -13,4 +13,6 @@ public interface NameService {
   List<Name> selectAll();
 
   int selectByName(String name);
+
+  void delByName(String name);
 }

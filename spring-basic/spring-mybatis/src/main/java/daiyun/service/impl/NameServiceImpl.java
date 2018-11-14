@@ -25,11 +25,17 @@ public class NameServiceImpl implements NameService {
 
   @Override
   public int selectByName(String name) {
-    List<Name> lists = nameDao.selectByName(name);
-    if (lists.size() > 0) {
-      return lists.get(0).getId();
-    } else {
-      return 0;
-    }
+
+    System.out.println("service");
+    return nameDao.selectByName(name);
   }
+
+  @Override
+  public void delByName(String name) {
+    System.out.println("do del");
+
+    nameDao.deleteByName(name);
+  }
+
+
 }

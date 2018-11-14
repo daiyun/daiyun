@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface NameDao {
 
-  List<Name> selectByName(@Param("name") String name);
+  Integer selectByName(@Param("name") String name);
 
   List<Name> selectAll();
 

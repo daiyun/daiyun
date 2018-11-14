@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.cn.szl.dao.DataDailyMapper">
+<mapper namespace="daiyun.dao.NameDao">
 
     <resultMap id="BaseResultMap" type="daiyun.pojo.Name">
-        <result column="id" property="id" jdbcType="INT"/>
+        <result column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <resultMap type="java.lang.Integer" id="Integer"></resultMap>
 
     <select id="selectByName" resultMap="Integer">
-        SELECT count(*) from name
+        SELECT id from name where name = #{name}
     </select>
 
     <select id="selectAll" resultMap="BaseResultMap">
@@ -21,7 +21,7 @@
         insert into
         name(id,name)
         values(
-        #{id,jdbcType=INT},
+        #{id,jdbcType=INTEGER},
         #{name,jdbcType=VARCHAR}
         )
     </insert>

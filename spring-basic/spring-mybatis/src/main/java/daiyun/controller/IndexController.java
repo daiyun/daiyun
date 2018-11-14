@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.sql.JDBCType;
+
 /**
  * @author godaiyun
  * @date 2018-11-08 14:36.
@@ -24,9 +26,13 @@ public class IndexController {
 
     int res = nameService.selectByName(name);
 
+//    nameService.delByName(name);
+//
     System.out.println("res:" + res);
 
-    return res + "";
+
+
+    return "123";
   }
 
 
