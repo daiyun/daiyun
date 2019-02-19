@@ -1,6 +1,6 @@
 package daiyun.tree;
 
-public class TreeNode<T> {
+public class TreeNode<T extends Comparable> {
 
   public TreeNode left;
   public TreeNode right;

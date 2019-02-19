@@ -14,7 +14,7 @@ public class IndexController {
 
   @RequestMapping("/")
   public String home() {
-    return "Hello world";
+    return "Hello world 1";
   }
 
   @Value("${server.port}")

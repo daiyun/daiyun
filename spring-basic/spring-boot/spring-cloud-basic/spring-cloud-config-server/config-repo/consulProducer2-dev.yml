@@ -1,0 +1,9 @@
+server:
+  port: 8561
+
+spring:
+  application:
+    name: consul-producer2-dev
+
+debug: true
+

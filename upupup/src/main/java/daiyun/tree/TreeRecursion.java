@@ -131,9 +131,9 @@ public class TreeRecursion {
         printNode(p);
       }
 
-      if(stack.size()>0){
+      if (stack.size() > 0) {
         p = stack.peek().right;
-      }else {
+      } else {
         p = null;
       }
 

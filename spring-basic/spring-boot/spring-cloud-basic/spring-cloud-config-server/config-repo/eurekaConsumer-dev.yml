@@ -1,0 +1,21 @@
+server:
+  port: 8760
+  
+spring:
+  application:
+    name: eureka-consumer-dev
+    
+debug: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8660/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    statusPageUrlPath: http://localhost:${server.port}/info
+    healthCheckUrlPath: http://localhost:${server.port}/health
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+
