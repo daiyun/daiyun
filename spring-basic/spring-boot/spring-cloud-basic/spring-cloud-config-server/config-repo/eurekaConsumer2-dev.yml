@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: eureka-consumer-dev
+  sleuth:
+    sampler:
+      percentage: 1.0
+  zipkin:
+    base-url: http://localhost:8960
 
 debug: true
 

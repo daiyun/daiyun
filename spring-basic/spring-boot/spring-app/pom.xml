@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.daiyun</groupId>
+    <artifactId>spring-app</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>spring-app</name>
+    <description>spring-app</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.1.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>-->
+
+    <!--打包成启动脚本:mvn clean package appassembler:assemble-->
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>1.10</version>
+                <configuration>
+                    <platforms>
+                        <platform>windows</platform>
+                        <platform>unix</platform>
+                    </platforms>
+                    &lt;!&ndash; 根目录 &ndash;&gt;
+                    <assembleDirectory>${project.build.directory}</assembleDirectory>
+                    &lt;!&ndash; 打包的jar，以及maven依赖的jar放到这个目录里面 &ndash;&gt;
+                    <repositoryName>lib</repositoryName>
+                    &lt;!&ndash; 可执行脚本的目录 &ndash;&gt;
+                    <binFolder>bin</binFolder>
+                    &lt;!&ndash; 配置文件的目标目录 &ndash;&gt;
+                    <configurationDirectory>conf</configurationDirectory>
+                    &lt;!&ndash; 拷贝配置文件到上面的目录中 &ndash;&gt;
+                    <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                    &lt;!&ndash; 从哪里拷贝配置文件 (默认src/main/config) &ndash;&gt;
+                    <configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+                    &lt;!&ndash; lib目录中jar的存放规则，默认是${groupId}/${artifactId}的目录格式，flat表示直接把jar放到lib目录 &ndash;&gt;
+                    <repositoryLayout>flat</repositoryLayout>
+                    <encoding>UTF-8</encoding>
+                    <logsDirectory>logs</logsDirectory>
+                    <tempDirectory>temp</tempDirectory>
+                    <programs>
+                        <program>
+                            <id>spring-app</id>
+                            <mainClass>com.daiyun.Application</mainClass>
+                            <jvmSettings>
+                                <extraArguments>
+                                    <extraArgument>-server</extraArgument>
+                                    <extraArgument>-Xmx2G</extraArgument>
+                                    <extraArgument>-Xms2G</extraArgument>
+                                </extraArguments>
+                            </jvmSettings>
+                        </program>
+                    </programs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>-->
+
+    <!--打包成服务:mvn clean package appassembler:generate-daemons-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>appassembler-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <!-- 根目录 -->
+                    <assembleDirectory>${project.build.directory}/spring-app</assembleDirectory>
+                    <!-- 打包的jar，以及maven依赖的jar放到这个目录里面 -->
+                    <repositoryName>lib</repositoryName>
+                    <!-- 可执行脚本的目录 -->
+                    <binFolder>bin</binFolder>
+                    <!-- 配置文件的目标目录 -->
+                    <configurationDirectory>conf</configurationDirectory>
+                    <!-- 拷贝配置文件到上面的目录中 -->
+                    <copyConfigurationDirectory>true</copyConfigurationDirectory>
+                    <!-- 从哪里拷贝配置文件 (默认src/main/config) -->
+                    <configurationSourceDirectory>src/main/resources</configurationSourceDirectory>
+                    <!-- lib目录中jar的存放规则，默认是${groupId}/${artifactId}的目录格式，flat表示直接把jar放到lib目录 -->
+                    <repositoryLayout>flat</repositoryLayout>
+                    <encoding>UTF-8</encoding>
+                    <logsDirectory>logs</logsDirectory>
+                    <tempDirectory>tmp</tempDirectory>
+                    <daemons>
+                        <daemon>
+                            <id>spring-app</id>
+                            <mainClass>com.daiyun.Application</mainClass>
+                            <platforms>
+                                <platform>jsw</platform>
+                            </platforms>
+                            <generatorConfigurations>
+                                <generatorConfiguration>
+                                    <generator>jsw</generator>
+                                    <includes>
+                                        <include>linux-x86-32</include>
+                                        <include>linux-x86-64</include>
+                                        <include>windows-x86-32</include>
+                                        <include>windows-x86-64</include>
+                                    </includes>
+                                    <configuration>
+                                        <property>
+                                            <name>configuration.directory.in.classpath.first</name>
+                                            <value>conf</value>
+                                        </property>
+                                        <property>
+                                            <name>wrapper.ping.timeout</name>
+                                            <value>120</value>
+                                        </property>
+                                        <property>
+                                            <name>set.default.REPO_DIR</name>
+                                            <value>lib</value>
+                                        </property>
+                                        <property>
+                                            <name>wrapper.logfile</name>
+                                            <value>logs/wrapper.log</value>
+                                        </property>
+                                    </configuration>
+                                </generatorConfiguration>
+                            </generatorConfigurations>
+                            <jvmSettings>
+                                <!-- jvm参数,特别注意jmxremote.port,同一台机器上一个应用独占一个端口-->
+                                <systemProperties>
+                                    <systemProperty>com.sun.management.jmxremote</systemProperty>
+                                    <systemProperty>com.sun.management.jmxremote.port=11083</systemProperty>
+                                    <systemProperty>com.sun.management.jmxremote.authenticate=false</systemProperty>
+                                    <systemProperty>com.sun.management.jmxremote.ssl=false</systemProperty>
+                                </systemProperties>
+                            </jvmSettings>
+                        </daemon>
+                    </daemons>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

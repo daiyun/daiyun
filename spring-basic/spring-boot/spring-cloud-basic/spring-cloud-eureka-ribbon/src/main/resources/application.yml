@@ -9,3 +9,8 @@ server:
 spring:
   application:
     name: service-ribbon
+  sleuth:
+    sampler:
+      percentage: 1.0
+  zipkin:
+    base-url: http://localhost:8960

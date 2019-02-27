@@ -7,6 +7,11 @@ server:
 spring:
   application:
     name: service-feign
+  sleuth:
+    sampler:
+      percentage: 1.0
+  zipkin:
+    base-url: http://localhost:8960
 
 feign:
   hystrix:
