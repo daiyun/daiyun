@@ -4,26 +4,29 @@ public class Test {
 
   public static void main(String[] args) {
 
+
+    System.out.println(Math.pow(10,2));
 //    System.out.println(myAtoi("    -91"));
 
 
 //    searchInsert(new int[]{1,3,5,6},4);
 
-    ListNode one1 = new ListNode(1);
+   /* ListNode one1 = new ListNode(1);
     ListNode one2 = new ListNode(2);
     ListNode one3 = new ListNode(3);
     ListNode one4 = new ListNode(4);
     ListNode one5 = new ListNode(5);
     one1.next = one2;
     one2.next = one3;
-    one3.next = one4;
+    one3.next = one4.wait();
     one4.next = one5;
 
+    List list
 
     String str = "asfasd fasdf fasdf  fasdffa 辅导费";
 
     String[] sts = str.split("\\s");
-    System.out.println();
+    System.out.println();*/
 
 
 //    System.out.println(multiply("123","456"));

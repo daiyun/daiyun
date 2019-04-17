@@ -22,7 +22,10 @@ public class TreeRecursion {
     treeRoot.right.left = new TreeNode(6);
     treeRoot.right.right = new TreeNode(7);
 
-    lastRecuresion(treeRoot);
+    midRecuresion(treeRoot);
+
+
+    TreeTraversing.midTravesing(treeRoot);
   }
 
   public static void printNode(TreeNode node) {

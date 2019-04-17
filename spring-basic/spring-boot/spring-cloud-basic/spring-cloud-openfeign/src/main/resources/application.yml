@@ -14,5 +14,5 @@ spring:
     base-url: http://localhost:8960
 
 feign:
-  hystrix:
-    enabled: true
+               hystrix:
+                 enabled: true

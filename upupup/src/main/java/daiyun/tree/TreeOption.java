@@ -17,7 +17,8 @@ public class TreeOption {
     }
 
     System.out.println("============顺序遍历============");
-    heightOrderRecursion(treeRoot);
+    preOrderRecursion(treeRoot);
+    TreeTraversing.preTravesing(treeRoot);
   }
 
   public static void printNode(TreeNode node) {
