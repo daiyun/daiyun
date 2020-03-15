@@ -11,6 +11,11 @@ spring:
     base-url: http://localhost:8960
 
 eureka:
+  instance:
+    statusPageUrlPath: http://localhost:${server.port}/info
+    healthCheckUrlPath: http://localhost:${server.port}/actuator/health
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
   client:
     serviceUrl:
       defaultZone: http://localhost:8660/eureka/,http://localhost:8661/eureka/,http://localhost:8662/eureka/
@@ -23,3 +28,19 @@ zuul:
     api-b:
       path: /api-b/**
       serviceId: service-feign
+
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS #health endpoint是否必须显示全部细节
+  endpoints:
+    web:
+      exposure:
+        include: "*" #暴露所有的端点我们可以看到更多的服务实例相关信息，
+        exclude: env
+    jmx:
+      exposure:
+        include: "*"
+        exclude: env
+

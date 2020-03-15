@@ -1,0 +1,22 @@
+---
+spring:
+  profiles:
+    active:
+      - secure
+debug: true
+---
+spring:
+  profiles: insecure
+
+---
+spring:
+  profiles: secure
+  security:
+    user:
+      name: ${security2.user.name}
+      password: ${security2.user.password}
+eureka:
+  instance:
+    metadata-map:
+      user.name: ${security2.user.name}
+      user.password: ${security2.user.password}

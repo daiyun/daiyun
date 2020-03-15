@@ -23,4 +23,8 @@ public class HelloService {
     public String hiError(String name) {
         return "hi," + name + ",sorry,error!";
     }
+
+    public String aiService() {
+        return restTemplate.getForObject("http://AI-SERVICE/hello", String.class);
+    }
 }

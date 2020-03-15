@@ -14,7 +14,7 @@ eureka:
     #    registerWithEureka: false
     #    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:8661/eureka/,http://${eureka.instance.hostname}:8662/eureka/
+      defaultZone: http://${eureka.instance.hostname}:8660/eureka/
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 6000

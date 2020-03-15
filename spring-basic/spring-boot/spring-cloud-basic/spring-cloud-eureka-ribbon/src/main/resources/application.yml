@@ -1,10 +1,17 @@
 eureka:
+  instance:
+    statusPageUrlPath: http://localhost:${server.port}/info
+    healthCheckUrlPath: http://localhost:${server.port}/actuator/health
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
   client:
     serviceUrl:
-      defaultZone: http://localhost:8660/eureka/,http://localhost:8661/eureka/,http://localhost:8662/eureka/
+      defaultZone: http://localhost:8660/eureka/
 
 server:
   port: 8764
+
+
 
 spring:
   application:
@@ -14,3 +21,19 @@ spring:
       percentage: 1.0
   zipkin:
     base-url: http://localhost:8960
+
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS #health endpoint是否必须显示全部细节
+  endpoints:
+    web:
+      exposure:
+        include: "*" #暴露所有的端点我们可以看到更多的服务实例相关信息，
+        exclude: env
+    jmx:
+      exposure:
+        include: "*"
+        exclude: env
+

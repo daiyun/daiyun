@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: config-server
+server:
+  port: 8899
+
+debug: false
+logging:
+  path: ./log
+
+---
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: file:E:\\springcloudconfig
+#          search-paths: dev
+      #            username:
+      #            password:
+      label: master
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Chongqing
+
+eureka:
+  instance:
+    statusPageUrlPath: http://localhost:${server.port}/info
+    healthCheckUrlPath: http://localhost:${server.port}/actuator/health
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8660/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS #health endpoint是否必须显示全部细节
+  endpoints:
+    web:
+      exposure:
+        include: "*" #暴露所有的端点我们可以看到更多的服务实例相关信息，
+        exclude: env
+    jmx:
+      exposure:
+        include: "*"
+        exclude: env

@@ -27,4 +27,9 @@ public class HelloControler {
         return helloService.index();
     }
 
+    @GetMapping(value = "/ai")
+    public String aiService() {
+        return helloService.aiService();
+    }
+
 }

@@ -15,7 +15,7 @@ debug: true
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8660/eureka/,http://localhost:8661/eureka/,http://localhost:8662/eureka/
+      defaultZone: http://localhost:8660/eureka/
     healthcheck:
       enabled: true
   instance:
