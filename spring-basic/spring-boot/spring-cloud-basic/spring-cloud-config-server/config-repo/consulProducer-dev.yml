@@ -1,8 +1,0 @@
-server:
-  port: 8560
-
-spring:
-  application:
-    name: consul-producer-dev
-
-debug: true

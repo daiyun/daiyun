@@ -14,8 +14,8 @@ spring:
     config:
       server:
         git:
-          uri: file:E:\\springcloudconfig
-#          search-paths: dev
+          uri: https://github.com/daiyun/conf.git
+          search-paths: springcloud
       #            username:
       #            password:
       label: master
@@ -25,13 +25,13 @@ spring:
 
 eureka:
   instance:
-    statusPageUrlPath: http://localhost:${server.port}/info
-    healthCheckUrlPath: http://localhost:${server.port}/actuator/health
+    statusPageUrlPath: http://spring-app:${server.port}/info
+    healthCheckUrlPath: http://spring-app:${server.port}/actuator/health
     lease-expiration-duration-in-seconds: 30
     lease-renewal-interval-in-seconds: 10
   client:
     serviceUrl:
-      defaultZone: http://localhost:8660/eureka/
+      defaultZone: http://spring-app:8660/eureka/
 
 management:
   endpoint:

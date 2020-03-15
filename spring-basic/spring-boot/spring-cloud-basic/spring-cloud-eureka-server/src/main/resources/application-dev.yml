@@ -2,7 +2,7 @@
 spring:
   cloud:
     config:
-      uri: http://localhost:8899/
+      uri: http://spring-app:8899/
       label: master
       name: eurekaServer
       profile: dev
