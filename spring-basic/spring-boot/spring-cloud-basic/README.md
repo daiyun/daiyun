@@ -107,3 +107,10 @@ Git地址：https://github.com/daiyun/conf.git
 
 配置中心：http://spring-app:8899/
 
+
+
+## spring-admin
+
+地址：<http://spring-app:8766/>
+
+账号密码：sa/sa
