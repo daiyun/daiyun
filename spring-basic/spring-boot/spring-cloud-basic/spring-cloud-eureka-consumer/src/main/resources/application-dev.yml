@@ -1,9 +1,9 @@
 server:
-  port: 8899
+  port: 8762
 
 spring:
   application:
-    name: config-server
+    name: eureka-consumer-dev
 debug: false
 
 eureka:
@@ -23,28 +23,13 @@ eureka:
 management:
   endpoint:
     health:
-      show-details: ALWAYS #health endpointæ˜¯å¦å¿…é¡»æ˜¾ç¤ºå…¨éƒ¨ç»†èŠ‚
+      show-details: ALWAYS #health endpointÊÇ·ñ±ØĞëÏÔÊ¾È«²¿Ï¸½Ú
   endpoints:
     web:
       exposure:
-        include: "*" #æš´éœ²æ‰€æœ‰çš„ç«¯ç‚¹æˆ‘ä»¬å¯ä»¥çœ‹åˆ°æ›´å¤šçš„æœåŠ¡å®ä¾‹ç›¸å…³ä¿¡æ¯
+        include: "*" #±©Â¶ËùÓĞµÄ¶ËµãÎÒÃÇ¿ÉÒÔ¿´µ½¸ü¶àµÄ·şÎñÊµÀıÏà¹ØĞÅÏ¢
         exclude: env
     jmx:
       exposure:
         include: "*"
         exclude: env
-
----
-spring:
-  cloud:
-    config:
-      server:
-        git:
-          uri: https://github.com/daiyun/conf.git
-          search-paths: springcloud
-      #            username:
-      #            password:
-      label: master
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: Asia/Chongqing

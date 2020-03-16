@@ -73,17 +73,39 @@ ENV JAVA_OPTS=""
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 ```
 
+
+
+`bootstrap.yml`
+
+```properties
+# 配置中心服务的地址
+spring:
+  cloud:
+    config:
+      uri: http://spring-app:8899/
+      label: master
+      name: admin
+      profile: dev
+
+```
+
+
+
 创建运行容器
 
 ```shell
 docker run -d --name springcloud-* -p *:* *
 ```
 
+
+
 容器日志查看
 
 ```shell
 docker logs -f -t --tail 10 springcloud-eureka
 ```
+
+
 
 网络
 
@@ -99,6 +121,24 @@ docker logs -f -t --tail 10 springcloud-eureka
 
 
 
+```properties
+eureka:
+  instance:
+    hostname: spring-app
+    statusPageUrlPath: http://${eureka.instance.hostname}:${server.port}//swagger-ui.html
+    healthCheckUrlPath: http://${eureka.instance.hostname}:${server.port}/actuator/health
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+  client:
+    registry-fetch-interval-seconds: 10
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://spring-app:8660/eureka/
+```
+
+
+
 ## 配置中心
 
 Git地址：https://github.com/daiyun/conf.git
@@ -106,6 +146,20 @@ Git地址：https://github.com/daiyun/conf.git
 目录：springcloud
 
 配置中心：http://spring-app:8899/
+
+
+
+```properties
+# 配置中心服务的地址
+spring:
+  cloud:
+    config:
+      uri: http://spring-app:8899/
+      label: master
+      name: admin
+      profile: dev
+
+```
 
 
 
