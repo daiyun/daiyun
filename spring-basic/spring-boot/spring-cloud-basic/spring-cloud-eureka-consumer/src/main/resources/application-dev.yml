@@ -1,9 +1,9 @@
 server:
-  port: 8762
+  port: 9001
 
 spring:
   application:
-    name: eureka-consumer-dev
+    name: springcloud-eureka-appNo1
 debug: false
 
 eureka:
@@ -23,11 +23,11 @@ eureka:
 management:
   endpoint:
     health:
-      show-details: ALWAYS #health endpointÊÇ·ñ±ØĞëÏÔÊ¾È«²¿Ï¸½Ú
+      show-details: ALWAYS #health endpointæ˜¯å¦å¿…é¡»æ˜¾ç¤ºå…¨éƒ¨ç»†èŠ‚
   endpoints:
     web:
       exposure:
-        include: "*" #±©Â¶ËùÓĞµÄ¶ËµãÎÒÃÇ¿ÉÒÔ¿´µ½¸ü¶àµÄ·şÎñÊµÀıÏà¹ØĞÅÏ¢
+        include: "*" #æš´éœ²æ‰€æœ‰çš„ç«¯ç‚¹æˆ‘ä»¬å¯ä»¥çœ‹åˆ°æ›´å¤šçš„æœåŠ¡å®ä¾‹ç›¸å…³ä¿¡æ¯
         exclude: env
     jmx:
       exposure:

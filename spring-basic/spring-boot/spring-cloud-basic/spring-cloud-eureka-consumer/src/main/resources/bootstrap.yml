@@ -4,5 +4,5 @@ spring:
     config:
       uri: http://spring-app:8899/
       label: master
-      name: eurekaConsumer
+      name: appNo1
       profile: dev
