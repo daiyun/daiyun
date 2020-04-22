@@ -1,0 +1,6 @@
+GET {{baseUrl}}/noParams
+Accept: */*
+Cache-Control: no-cache
+
+###
+

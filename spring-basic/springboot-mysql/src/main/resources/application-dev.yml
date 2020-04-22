@@ -1,0 +1,38 @@
+server:
+  port: 9001
+
+spring:
+  application:
+    name: springboot-mysql
+debug: false
+
+---
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://spring-app:3306/daiyu?useUnicode=true&characterEncoding=UTF8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: stat,wall,log4j
+    connectionProperties: daiyu.comm.druid.stat.mergeSql=true;daiyu.comm.druid.stat.slowSqlMillis=5000
+
+jpa:
+  database: MYSQL
+  show-sql: true
+  properties:
+    hibernate:
+      hbm2ddl:
+        auto: none

@@ -44,4 +44,9 @@ public class IndexController {
         return "hi " + name + " ,i am from port:" + port;
     }
 
+    @RequestMapping("/noParams")
+    public String noParams() {
+        return "Hello world " + System.currentTimeMillis();
+    }
+
 }

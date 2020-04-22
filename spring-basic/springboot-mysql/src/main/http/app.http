@@ -1,0 +1,6 @@
+GET {{baseUrl}}/index/
+Accept: */*
+Cache-Control: no-cache
+
+###
+
