@@ -91,6 +91,16 @@ spring:
 
 
 
+创建镜像
+
+```shell
+mvn clean package docker:build
+```
+
+
+
+
+
 创建运行容器
 
 ```shell

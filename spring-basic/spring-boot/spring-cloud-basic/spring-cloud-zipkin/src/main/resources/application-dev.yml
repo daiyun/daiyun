@@ -1,0 +1,39 @@
+server:
+  port: 8960
+
+spring:
+  application:
+    name: zipkin-server
+
+eureka:
+  instance:
+    hostname: spring-app
+    statusPageUrlPath: http://${eureka.instance.hostname}:${server.port}/info
+    healthCheckUrlPath: http://${eureka.instance.hostname}:${server.port}/actuator/health
+    lease-expiration-duration-in-seconds: 30
+    lease-renewal-interval-in-seconds: 10
+  client:
+    registry-fetch-interval-seconds: 10
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://spring-app:8660/eureka/
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS #health endpoint是否必须显示全部细节
+  endpoints:
+    web:
+      exposure:
+        include: "*" #暴露所有的端点我们可以看到更多的服务实例相关信息
+        exclude: env
+    jmx:
+      exposure:
+        include: "*"
+        exclude: env
+
+  metrics:
+    web:
+      server:
+        auto-time-requests: false
