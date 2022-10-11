@@ -39,20 +39,44 @@ public class Topic35 {
     class Solution {
         public int searchInsert(int[] nums, int target) {
             int left = 0;
-            int right = nums.length-1;
+            int right = nums.length - 1;
 
             while (left < right) {
                 int mid = (left + right) >> 1;
 
                 if (target > nums[mid]) {
                     left = mid + 1;
-                } else if (target < nums[mid] && false) {
+                } else if (target < nums[mid]) {
                     right = mid - 1;
                 } else {
                     return mid;
                 }
             }
             return right;
+        }
+    }
+
+    class SolutionA {
+        public int searchInsert(int[] nums, int target) {
+            if (nums == null || nums.length < 1) {
+                return 0;
+            }
+
+            int p = 0;
+            int length = nums.length - 1;
+
+            while (p <= length) {
+                int mid = (p + length) >> 1;
+                if (target == nums[mid]) {
+                    return mid;
+                } else if (target > nums[mid]) {
+                    p = target + 1;
+                } else {
+                    length = mid - 1;
+                }
+            }
+
+            return p;
         }
     }
 }

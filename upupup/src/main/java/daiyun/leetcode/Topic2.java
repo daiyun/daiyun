@@ -14,8 +14,19 @@ public class Topic2 {
 
         Topic2 topic1 = new Topic2();
 
-        Solution solution = topic1.new Solution();
+        SolutionB solution = topic1.new SolutionB();
 
+
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(3);
+        l1.next.next = new ListNode(6);
+        l1.next.next.next = new ListNode(9);
+        l1.next.next.next.next = new ListNode(1);
+
+        ListNode l2 = new ListNode(1);
+
+        ListNode listNode = solution.addTwoNumbers(l1, l2);
+        System.out.println();
     }
 
     class Solution {
@@ -64,9 +75,110 @@ public class Topic2 {
         }
     }
 
-    public class ListNode {
+    class SolutionA {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            if (l1 == null) {
+                return l2;
+            }
+
+            if (l2 == null) {
+                return l1;
+            }
+
+            ListNode res = new ListNode(0);
+            ListNode nodeP = res;
+            int p = 0;
+            while (l1 != null || l2 != null) {
+                int a = 0;
+                if (l1 != null) {
+                    a = l1.val;
+                    l1 = l1.next;
+                }
+
+                int b = 0;
+                if (l2 != null) {
+                    b = l2.val;
+                    l2 = l2.next;
+                }
+
+                int addRes = a + b + p;
+                p = 0;
+                if (addRes >= 10) {
+                    p = 1;
+                    addRes = addRes - 10;
+                }
+
+                nodeP.next = new ListNode(addRes);
+                nodeP = nodeP.next;
+            }
+            if (p > 0) {
+                nodeP.next = new ListNode(p);
+            }
+
+
+            return res.next;
+        }
+    }
+
+    class SolutionB {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+            // 边界值判断
+            if(l2 == null){
+                return l1;
+            }
+            if(l1 == null){
+                return l2;
+            }
+
+            // 用于记录返回头节点
+            ListNode root = new ListNode();
+            ListNode p = root;
+            int temp = 0;
+            while(l1 != null || l2 != null){
+                if(l1 != null && l2 != null){
+                    int pVal = l1.val + l2.val + temp;
+                    temp = pVal / 10;
+                    p.next = new ListNode(pVal%10);
+                    p = p.next;
+                    l1 = l1.next;
+                    l2 = l2.next;
+                }else if(l1 != null){
+                    if(temp > 0){
+                        int pVal = l1.val+temp;
+                        temp = pVal / 10;
+                        p.next = new ListNode(pVal%10);
+                        l1 = l1.next;
+                        p = p.next;
+                    }else{
+                        p.next = l1;
+                        break;
+                    }
+                }else if(l2 != null){
+                    if(temp > 0){
+                        int pVal = l2.val+temp;
+                        temp = pVal / 10;
+                        p.next = new ListNode(pVal%10);
+                        l2 = l2.next;
+                        p = p.next;
+                    }else{
+                        p.next = l2;
+                        break;
+                    }
+                }
+            }
+            if(temp > 0){
+                p.next = new ListNode(temp);
+            }
+
+            return root.next;
+        }
+    }
+
+    public static class ListNode {
         int val;
         ListNode next;
+
+        ListNode(){}
 
         ListNode(int x) {
             val = x;

@@ -51,10 +51,10 @@ public class Topic44 {
     public static void main(String[] args) {
 
         Topic44 topic1 = new Topic44();
+        SolutionA solution = topic1.new SolutionA();
 
-        Solution solution = topic1.new Solution();
-
-        boolean res = solution.isMatch("aaa", "a");
+        boolean res = solution.isMatch("babaaababaabababbbbbbaabaabbabababbaababbaaabbbaaab",
+                "***bba**a*bbba**aab**b");
 
         System.out.println(res);
     }
@@ -67,13 +67,13 @@ public class Topic44 {
                 return true;
             }
 
-            if ((p == null && s != null) || (p.length() == 0 && s.length() > 0)) {
+            if (p == null || p.length() == 0) {
                 return false;
             }
 
             if (s.length() == 0) {
                 char c = p.charAt(0);
-                if (c == '*' || c == '?') {
+                if (c == '*') {
                     return isMatch(s, p.substring(1));
                 } else {
                     return false;
@@ -105,8 +105,14 @@ public class Topic44 {
 
     class SolutionA {
         public boolean isMatch(String s, String p) {
-            int len1 = s.length();
-            int len2 = p.length();
+            int len1 = 0;
+            if (s != null) {
+                len1 = s.length();
+            }
+            int len2 = 0;
+            if (p != null) {
+                len2 = p.length();
+            }
 
             boolean[][] ans = new boolean[len1 + 1][len2 + 1];
 
@@ -114,7 +120,7 @@ public class Topic44 {
 
 
             for (int i = 1; i <= len2; i++) {
-                ans[0][i] = ans[0][i - 1] && (p.charAt(i - 1) == '*' || p.charAt(i - 1) == '?');
+                ans[0][i] = ans[0][i - 1] && (p.charAt(i - 1) == '*');
             }
 
             for (int i = 1; i <= len1; i++) {
@@ -128,6 +134,57 @@ public class Topic44 {
             }
 
             return ans[len1][len2];
+        }
+    }
+
+    class SolutionB {
+        public boolean isMatch(String s, String p) {
+            int len1 = 0;
+            if (s != null) {
+                len1 = s.length();
+            }
+
+            int len2 = 0;
+            if (p != null) {
+                len2 = p.length();
+            }
+
+            if (len1 == len2 && len1 == 0) {
+                return true;
+            }
+
+            if (len2 == 0) {
+                return false;
+            }
+
+
+            Character charS = null;
+            if (len1 > 0) {
+                charS = s.charAt(0);
+            }
+
+            Character charP = p.charAt(0);
+
+            if ('?' == charP) {
+                if (charS != null) {
+                    return isMatch(s.substring(1), p.substring(1));
+                } else {
+                    return false;
+                }
+            } else if ('*' == charP) {
+                boolean metch = isMatch(s, p.substring(1));
+                if (charS != null) {
+                    metch = metch || isMatch(s.substring(1), p);
+                    metch = metch || isMatch(s.substring(1), p.substring(1));
+                }
+                return metch;
+            } else {
+                if (charP.equals(charS)) {
+                    return isMatch(s.substring(1), p.substring(1));
+                } else {
+                    return false;
+                }
+            }
         }
     }
 }

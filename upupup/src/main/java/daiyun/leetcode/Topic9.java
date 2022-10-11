@@ -7,6 +7,9 @@ public class Topic9 {
 
     public static void main(String[] args) {
 
+        String a = new String();
+        char[] chars = a.toCharArray();
+
         Topic9 topic1 = new Topic9();
 
         Solution solution = topic1.new Solution();

@@ -92,4 +92,40 @@ public class Topic63 {
     }
 
 
+    class SolutionA {
+        public int uniquePathsWithObstacles(int[][] obstacleGrid) {
+            if (obstacleGrid == null) {
+                return 0;
+            }
+
+            int x = obstacleGrid.length;
+            if (obstacleGrid[0] == null) {
+                return 0;
+            }
+            int y = obstacleGrid[0].length;
+
+            int[][] dp = new int[x + 1][y + 1];
+
+            for (int i = 0; i < x && obstacleGrid[i][0] != 1; i++) {
+                dp[i + 1][1] = 1;
+            }
+
+            for (int i = 0; i < y && obstacleGrid[0][i] != 1; i++) {
+                dp[1][i + 1] = 1;
+            }
+
+            for (int i = 1; i < x; i++) {
+                for (int j = 1; j < y; j++) {
+                    if (obstacleGrid[i][j] == 1) {
+                        dp[i + 1][j + 1] = 0;
+                    } else {
+                        dp[i + 1][j + 1] = dp[i][j + 1] + dp[i + 1][j];
+                    }
+                }
+            }
+
+            return dp[x][y];
+        }
+    }
+
 }

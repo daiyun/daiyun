@@ -1,9 +1,8 @@
 package daiyun.leetcode;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Set;
+import javafx.util.Pair;
+
+import java.util.*;
 
 /**
  * 给定一个只包含 '(' 和 ')' 的字符串，找出最长的包含有效括号的子串的长度。
@@ -25,9 +24,9 @@ public class Topic32 {
 
         Topic32 topic1 = new Topic32();
 
-        Solution solution = topic1.new Solution();
+        SolutionC solution = topic1.new SolutionC();
 
-        System.out.println(solution.longestValidParentheses(")()())"));
+        System.out.println(solution.longestValidParentheses("(()))"));
 
     }
 
@@ -81,6 +80,101 @@ public class Topic32 {
             }
 
             return maxLength;
+        }
+    }
+
+    class SolutionA {
+        public int longestValidParentheses(String s) {
+            int maxLength = 0;
+            if (s == null || s.length() < 2) {
+                return maxLength;
+            }
+
+            char[] characters = s.toCharArray();
+            Stack<Pair<Character, Integer>> stack = new Stack<>();
+            Map<Integer, Integer> preLength = new HashMap<>();
+
+            for (int i = 0; i < characters.length; i++) {
+                char c = characters[i];
+                if ('(' == c) {
+                    stack.push(new Pair<>(c, i));
+                } else {
+                    if (stack.size() > 0) {
+                        Pair<Character, Integer> pair = stack.pop();
+                        int index = pair.getValue();
+                        int preLen = preLength.getOrDefault(index - 1, 0);
+
+                        int currentLength = i - index + 1 + preLen;
+                        preLength.put(i, currentLength);
+                        if (currentLength > maxLength) {
+                            maxLength = currentLength;
+                        }
+                    }
+                }
+            }
+
+            return maxLength;
+        }
+    }
+
+    class SolutionB {
+        public int longestValidParentheses(String s) {
+            int maxLength = 0;
+            if (s == null || s.length() < 2) {
+                return maxLength;
+            }
+
+            char[] characters = s.toCharArray();
+            Stack<Integer> stack = new Stack<>();
+            stack.push(-1);
+
+            for (int i = 0; i < characters.length; i++) {
+                char c = characters[i];
+                if ('(' == c) {
+                    stack.push(i);
+                } else {
+                    if (stack.size() > 0) {
+                        stack.pop();
+
+                        if (stack.size() > 0) {
+                            int currentLength = i - stack.peek();
+                            if (currentLength > maxLength) {
+                                maxLength = currentLength;
+                            }
+                        } else {
+                            stack.push(i);
+                        }
+                    }
+                }
+            }
+
+            return maxLength;
+        }
+    }
+
+    class SolutionC {
+        public int longestValidParentheses(String s) {
+            if (s == null || s.length() < 2) {
+                return 0;
+            }
+
+            int[] dp = new int[s.length() + 1];
+
+            for (int i = 0; i < s.length(); i++) {
+                if (')' == s.charAt(i)) {
+                    if ((i - dp[i] - 1) >= 0 && s.charAt(i - dp[i] - 1) == '(') {
+                        dp[i + 1] = 2 + dp[i] + dp[i - dp[i] - 1];
+                    }
+                }
+            }
+
+            int max = 0;
+            for (int length : dp) {
+                if (length > max) {
+                    max = length;
+                }
+            }
+            return max;
         }
     }
 }

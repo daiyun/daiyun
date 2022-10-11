@@ -28,12 +28,22 @@ public class Topic25 {
 
         Topic25 topic1 = new Topic25();
 
-        Solution solution = topic1.new Solution();
+        SolutionB solution = topic1.new SolutionB();
+
+
+        ListNode root = new ListNode(1);
+        root.next = new ListNode(2);
+        root.next.next = new ListNode(3);
+        root.next.next.next = new ListNode(4);
+
+        ListNode node = solution.reverseKGroup(root);
+
+        System.out.println();
 
 
     }
 
-    public class ListNode {
+    public static class ListNode {
         int val;
         ListNode next;
 
@@ -92,6 +102,29 @@ public class Topic25 {
                 ListNode item = stack.pollLast();
                 pre.next = item;
                 pre = item;
+            }
+
+            return ans.next;
+        }
+    }
+
+    class SolutionB {
+        public ListNode reverseKGroup(ListNode head) {
+            ListNode ans = new ListNode(0);
+            ListNode p = ans;
+
+            while (head != null) {
+                ListNode node1 = head;
+                head = head.next;
+
+                if (head != null) {
+                    p.next = head;
+                    head = head.next;
+                    p = p.next;
+                }
+
+                p.next = node1;
+                p = p.next;
             }
 
             return ans.next;

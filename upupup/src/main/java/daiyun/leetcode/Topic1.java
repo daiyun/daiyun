@@ -37,4 +37,30 @@ public class Topic1 {
             return null;
         }
     }
+
+
+    class SolutionA {
+        public int[] twoSum(int[] nums, int target) {
+            int[] res = new int[2];
+
+            if (nums == null || nums.length < 2) {
+                return res;
+            }
+
+            Map<Integer, Integer> kIndex = new HashMap<>();
+
+            for (int i = 0; i < nums.length; i++) {
+                int indexValue = nums[i];
+                int find = target - indexValue;
+                if (kIndex.containsKey(find)) {
+                    res[0] = kIndex.get(find);
+                    res[1] = i;
+                    break;
+                }
+                kIndex.put(indexValue, i);
+            }
+
+            return res;
+        }
+    }
 }

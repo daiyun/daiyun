@@ -13,13 +13,13 @@ public class Topic4 {
 
         Topic4 topic1 = new Topic4();
 
-        Solution solution = topic1.new Solution();
+        SolutionA solution = topic1.new SolutionA();
 
         System.out.println(solution.findMedianSortedArrays(new int[]{
-                        1, 3
+                        1
                 },
                 new int[]{
-                        2
+
                 }));
 
     }
@@ -88,6 +88,62 @@ public class Topic4 {
 
 
             return ans;
+        }
+    }
+
+
+    class SolutionA {
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+
+            int lengthA = -1;
+            if (nums1 != null) {
+                lengthA = nums1.length;
+            }
+
+            int lengthB = -1;
+            if (nums2 != null) {
+                lengthB = nums2.length;
+            }
+
+            int max = ((lengthA + lengthB) / 2) + 1;
+
+            int p = 0;
+            double pre = 0;
+            double next = 0;
+
+            int index1 = 0;
+            int index2 = 0;
+            while (p < max) {
+
+                Integer temp = null;
+                if (index1 < lengthA) {
+                    temp = 1;
+                }
+
+                if (temp == null) {
+                    temp = 2;
+                } else {
+                    if (index2 < lengthB && nums2[index2] < nums1[index1]) {
+                        temp = 2;
+                    }
+                }
+
+                pre = next;
+                if (temp == 1) {
+                    next = nums1[index1];
+                    index1++;
+                } else {
+                    next = nums2[index2];
+                    index2++;
+                }
+                p++;
+            }
+
+            if ((lengthA + lengthB) % 2 == 1) {
+                return next;
+            } else {
+                return (next + pre) / 2;
+            }
         }
     }
 

@@ -50,7 +50,7 @@ public class Topic20 {
     class Solution {
         public boolean isValid(String s) {
 
-            Stack<String> stack = new StringStack();
+            Stack<String> stack = new Stack<>();
 
             for (int i = 0; i < s.length(); i++) {
                 char c = s.charAt(i);

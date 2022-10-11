@@ -26,7 +26,7 @@ public class Topic108 {
 
         Topic108 topic1 = new Topic108();
 
-        Solution solution = topic1.new Solution();
+        SolutionA solution = topic1.new SolutionA();
 
         long start = System.currentTimeMillis();
 
@@ -72,14 +72,45 @@ public class Topic108 {
             }
 
 
-            if (mid < nums.length - 1) {
-                int[] rightTree = new int[nums.length - mid - 1];
-                System.arraycopy(nums, mid + 1, rightTree, 0, rightTree.length);
-                root.right = sortedArrayToBST(rightTree);
+            if (mid < len - 1) {
+                root.right = sortedArrayToBST(Arrays.copyOfRange(nums, mid + 1, len));
             }
 
 
             return root;
+        }
+    }
+
+    /**
+     * Definition for a binary tree node.
+     * public class TreeNode {
+     * int val;
+     * TreeNode left;
+     * TreeNode right;
+     * TreeNode(int x) { val = x; }
+     * }
+     */
+    class SolutionA {
+        public TreeNode sortedArrayToBST(int[] nums) {
+            if (nums == null || nums.length == 0) {
+                return null;
+            }
+
+            int length = nums.length;
+
+            int mid = length / 2;
+
+            TreeNode node = new TreeNode(nums[mid]);
+
+            if (mid > 0) {
+                node.left = sortedArrayToBST(Arrays.copyOf(nums, mid));
+            }
+
+            if (mid < length - 1) {
+                node.right = sortedArrayToBST(Arrays.copyOfRange(nums, mid + 1, length));
+            }
+
+            return node;
         }
     }
 }

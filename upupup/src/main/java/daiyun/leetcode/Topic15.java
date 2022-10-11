@@ -22,9 +22,11 @@ public class Topic15 {
 
         Topic15 topic1 = new Topic15();
 
-        Solution solution = topic1.new Solution();
+        SolutionA solution = topic1.new SolutionA();
 
-        solution.threeSum(new int[]{-1, 0, 1, 2, -1, -4});
+        List<List<Integer>> lists = solution.threeSum(new int[]{1, -1, -1, 0});
+
+        System.out.println();
 
     }
 
@@ -56,6 +58,55 @@ public class Topic15 {
             }
 
             return ans;
+        }
+
+    }
+
+    class SolutionA {
+        public List<List<Integer>> threeSum(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            if (nums.length < 3) {
+                return res;
+            }
+
+            // 排序
+            Arrays.sort(nums);
+
+            for (int first = 0; first < nums.length; first++) {
+                if (nums[first] > 0) {
+                    break;
+                }
+
+                if ((first > 0 && nums[first] == nums[first - 1])) {
+                    continue;
+                }
+
+                int second = first + 1;
+                int third = nums.length - 1;
+                while (second < third) {
+                    if (nums[second] + nums[third] == -nums[first]) {
+                        List<Integer> oneRes = new ArrayList<>();
+                        oneRes.add(first);
+                        oneRes.add(second);
+                        oneRes.add(third);
+                        res.add(oneRes);
+                        second++;
+                        third--;
+                    } else if (nums[second] + nums[third] < -nums[first]) {
+                        second++;
+                        while (second < third && nums[second] == nums[second - 1]) {
+                            second++;
+                        }
+                    } else {
+                        third--;
+                        while (second < third && nums[third] == nums[third + 1]) {
+                            third--;
+                        }
+                    }
+                }
+            }
+
+            return res;
         }
 
     }

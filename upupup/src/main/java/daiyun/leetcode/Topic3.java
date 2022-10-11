@@ -12,9 +12,9 @@ public class Topic3 {
 
         Topic3 topic1 = new Topic3();
 
-        Solution solution = topic1.new Solution();
+        SolutionA solution = topic1.new SolutionA();
 
-        System.out.println(solution.lengthOfLongestSubstring("abcda"));
+        System.out.println(solution.lengthOfLongestSubstring("pwwkew"));
     }
 
     class Solution {
@@ -50,6 +50,49 @@ public class Topic3 {
             }
 
             return maxLength;*/
+        }
+    }
+
+    class SolutionA {
+        public int lengthOfLongestSubstring(String s) {
+            if (s == null) {
+                return 0;
+            }
+
+            int res = 1;
+            if (s.length() < 2) {
+                return s.length();
+            }
+
+            Set<Character> chars = new HashSet<>();
+
+            int left = 0;
+            int right = 0;
+
+            while (right < s.length()) {
+                Character charP = s.charAt(right);
+                if (chars.contains(charP)) {
+                    while (left < right) {
+                        Character charH = s.charAt(left);
+                        left++;
+                        if (charH.equals(charP)) {
+                            break;
+                        }
+                        chars.remove(charH);
+                    }
+                } else {
+                    chars.add(charP);
+                }
+
+                int max = right - left + 1;
+                if (res < max) {
+                    res = max;
+                }
+                right++;
+            }
+
+
+            return res;
         }
     }
 

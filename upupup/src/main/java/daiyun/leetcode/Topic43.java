@@ -1,5 +1,8 @@
 package daiyun.leetcode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。
  * <p>
@@ -24,9 +27,9 @@ public class Topic43 {
 
         Topic43 topic1 = new Topic43();
 
-        Solution solution = topic1.new Solution();
+        SolutionA solution = topic1.new SolutionA();
 
-        String str = solution.multiply("123", "456");
+        String str = solution.multiply("245544", "");
 
         System.out.println(str);
     }
@@ -84,6 +87,65 @@ public class Topic43 {
             return str;
 
 
+        }
+    }
+
+
+    class SolutionA {
+        public String multiply(String num1, String num2) {
+            if (num1 == null || num2 == null || num1.length() == 0 || num2.length() == 0) {
+                return "";
+            }
+            if (num1.charAt(0) == '0' || num2.charAt(0) == '0') {
+                return "0";
+            }
+
+            int length1 = num1.length();
+            int length2 = num2.length();
+
+            List<String> res = new ArrayList<>(length1);
+            int maxLength = 0;
+            for (int i = length1 - 1; i >= 0; i--) {
+                int a = num1.charAt(i) - '0';
+                StringBuilder sb = new StringBuilder();
+                for (int k = i; k < length1 - 1; k++) {
+                    sb.append('0');
+                }
+                int pre = 0;
+                for (int j = length2 - 1; j >= 0; j--) {
+                    int b = num2.charAt(j) - '0';
+                    int c = a * b + pre;
+                    pre = c / 10;
+                    sb.append(c % 10);
+                }
+                if (pre > 0) {
+                    sb.append(pre);
+                }
+                if (sb.length() > maxLength) {
+                    maxLength = sb.length();
+                }
+                res.add(sb.toString());
+            }
+
+            StringBuilder sb = new StringBuilder();
+
+            int pre = 0;
+            for (int i = 0; i < maxLength; i++) {
+                int com = pre;
+                for (int j = 0; j < length1; j++) {
+                    if (res.get(j).length() > i) {
+                        int a = res.get(j).charAt(i) - '0';
+                        com += a;
+                    }
+                }
+                sb.append(com % 10);
+                pre = com / 10;
+            }
+            if (pre > 0) {
+                sb.append(pre);
+            }
+
+            return sb.reverse().toString();
         }
     }
 }

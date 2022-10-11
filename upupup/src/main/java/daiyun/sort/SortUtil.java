@@ -71,6 +71,24 @@ public class SortUtil {
     return start;
   }
 
+  private static int onceQuickSort2(int[] arr, int start, int end) {
+    int p = arr[start];
+    int mask = start;
+    for (int i = start + 1; i < end; i++) {
+      if(arr[i]<arr[mask]){
+        mask++;
+        int tmp = arr[i];
+        arr[i] = arr[mask];
+        arr[mask] = tmp;
+      }
+    }
+
+    arr[start] = arr[mask];
+    arr[mask] = p;
+
+    return mask;
+  }
+
   //=================================================插入排序
 
   /**
